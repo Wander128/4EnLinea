@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private int width = 10; // Alto
     private bool player1 = true; // Boleano que permite el cambio de jugador
     private bool winner; // Boleano que permite la declaración del ganador
+    public Text jugador1;
     private bool horizontalWins;
     private bool verticalWins;
     private bool diagonalWins;
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
     {
         if (grid[x, y].GetComponent<Renderer>().material.color != Color.black) return;
 
-        var assignedColor = player1 ? Color.yellow : Color.green;
+        var assignedColor = player1 ? Color.cyan : Color.magenta;
 
         grid[x, y].GetComponent<Renderer>().material.color = assignedColor;
 
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             thereIsAWinner = DiagonalConditionsIz(x, y, assignedColor);
         if (thereIsAWinner)
         {
-            var winnerName = player1 ? "Amarillo" : "Verde";
+            var winnerName = player1 ? "Azul" : "Magenta";
             DeclareWinner(winnerName);
         }
 
@@ -122,7 +123,7 @@ public class GameManager : MonoBehaviour
     {
         winner = true;
         Debug.Log(message: "El ganador es el " + winnerName);
-        //player1.gameObject.SetActive(winner); //Con ésta línea del juego mostramos en pantalla que ha terminado el juego, pues hay un ganador.
+        jugador1.gameObject.SetActive(winner); //Con ésta línea del juego mostramos en pantalla que ha terminado el juego, pues hay un ganador.
     }
 
     /// <summary>
